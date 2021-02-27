@@ -9,6 +9,7 @@ function click() {
   if (!guess) {
     document.querySelector('.message').textContent = 'No Number Entered';
   } else if (guess === secretNumber) {
+    document.querySelector('body').style.backgroundColor = '#60b347';
     document.querySelector('.message').textContent = 'Correct';
     document.querySelector('.number').textContent = secretNumber;
   } else if (guess > secretNumber) {
@@ -18,11 +19,17 @@ function click() {
     document.querySelector('.message').textContent = 'Too low';
     tries = tries - 1;
   }
+
   setTries();
+  if (tries <= 0) {
+    document.querySelector('.message').textContent = 'You lost';
+    setTimeout(reset, 2000);
+  }
 }
 function reset() {
   tries = 20;
   document.querySelector('.message').textContent = 'Start guessing...';
+  document.querySelector('.check').value = '';
   setTries();
 }
 setTries();
