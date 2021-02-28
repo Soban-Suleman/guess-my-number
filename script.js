@@ -1,42 +1,51 @@
 'use strict';
+// Tries variable
 let tries = 20;
-const secretNumber = Math.trunc(Math.random() * 20) + 1;
+const secretNumber = Math.trunc(Math.random() * 20) + 1; //Generating random number between 1 and 20
+
+// This function variates tries value according to situation
 function setTries() {
   document.querySelector('.score').textContent = tries;
 }
+
+// displays message
+function displayMessage(message) {
+  document.querySelector('.message').textContent = message;
+}
+
+// function onclick, called when check button is clicked
 function click() {
   const guess = Number(document.querySelector('.guess').value);
   if (!guess) {
-    document.querySelector('.message').textContent = 'No Number Entered';
+    displayMessage('No Number Entered');
   } else if (guess === secretNumber) {
     document.querySelector('body').style.backgroundColor = '#60b347';
-    document.querySelector('.message').textContent = 'Correct';
+    displayMessage('Correct');
     document.querySelector('.number').textContent = secretNumber;
     document.querySelector('.number').style.width = '30rem';
-  } else if (guess > secretNumber) {
-    document.querySelector('.message').textContent = 'Too high';
-    tries = tries - 1;
-  } else if (guess < secretNumber) {
-    document.querySelector('.message').textContent = 'Too low';
+  } else if (guess !== secretNumber) {
+    displayMessage(guess > secretNumber ? 'Too high' : 'Too Low');
     tries = tries - 1;
   }
-
   setTries();
   if (tries <= 0) {
-    document.querySelector('.message').textContent = 'You lost';
+    displayMessage('You lost');
     setTimeout(reset, 2000);
   }
 }
+
+// reset function calls on clicking again button, it resets screen to normal state
 function reset() {
   tries = 20;
-  document.querySelector('.message').textContent = 'Start guessing...';
+  setTries();
+  displayMessage('Start guessing...');
   document.querySelector('body').style.backgroundColor = '#3f3dd8';
   document.querySelector('.number').textContent = '?';
   document.querySelector('.number').style.width = '15rem';
   document.querySelector('.guess').value = '';
   secretNumber = Math.trunc(Math.random() * 20) + 1;
-  setTries();
 }
-setTries();
-document.querySelector('.check').addEventListener('click', click);
-document.querySelector('.again').addEventListener('click', reset);
+
+setTries(); //setting default value of tries on html screen
+document.querySelector('.check').addEventListener('click', click); //check button
+document.querySelector('.again').addEventListener('click', reset); //again button
