@@ -12,6 +12,7 @@ function click() {
     document.querySelector('body').style.backgroundColor = '#60b347';
     document.querySelector('.message').textContent = 'Correct';
     document.querySelector('.number').textContent = secretNumber;
+    document.querySelector('.number').style.width = '30rem';
   } else if (guess > secretNumber) {
     document.querySelector('.message').textContent = 'Too high';
     tries = tries - 1;
