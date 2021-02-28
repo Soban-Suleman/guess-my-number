@@ -30,7 +30,11 @@ function click() {
 function reset() {
   tries = 20;
   document.querySelector('.message').textContent = 'Start guessing...';
-  document.querySelector('.check').value = '';
+  document.querySelector('body').style.backgroundColor = '#3f3dd8';
+  document.querySelector('.number').textContent = '?';
+  document.querySelector('.number').style.width = '15rem';
+  document.querySelector('.guess').value = '';
+  secretNumber = Math.trunc(Math.random() * 20) + 1;
   setTries();
 }
 setTries();
