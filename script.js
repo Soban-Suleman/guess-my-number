@@ -1,7 +1,7 @@
 'use strict';
 // Tries variable
 let tries = 20;
-const secretNumber = Math.trunc(Math.random() * 20) + 1; //Generating random number between 1 and 20
+let secretNumber = Math.trunc(Math.random() * 20) + 1; //Generating random number between 1 and 20
 
 // This function variates tries value according to situation
 function setTries() {
